@@ -43,20 +43,21 @@ class Experiment(object):
         self.max_distance = abs(max(self.data, key=abs))
 
     def plot(self):
-        plt.clf()
         plt.plot(self.data)
         plt.title("1D Random Walk (100 Steps, 1000 steps, 10000 steps)")
         plt.xlabel("Trial number")
         plt.ylabel("Final position")
-        plt.savefig("plot.png")
+        plt.axhline(self.mean, color='red', linestyle='--')
+        plt.savefig("random_walk.png", dpi=300)
         plt.show()
-        plt.clf()
+        plt.close()
         plt.hist(self.data, bins=6)
-        plt.title("Histogram - 1D Random Walk (100 Steps, 1000 steps, 10000 steps)")
-        plt.xlabel("Final position value")
+        plt.title("Distribution of Final Positions After Random Walks")
+        plt.xlabel("Final Position")
         plt.ylabel("Frequency")
-        plt.savefig("plothist.png")
-        plt.show()
+        plt.axvline(self.mean, color='red', linestyle='--')
+        plt.savefig("final_positions_histogram.png.png")
+        plt.close()
             
 
 def main():
