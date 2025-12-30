@@ -1,9 +1,19 @@
 
+'''
+We imported these libraries to access its functions with the dot notation syntax 
+'''
+
 import matplotlib.pyplot as plt
 import random
 import statistics
 import sys
 
+'''
+This class models a random 1D walk. It tracks the position with an initial value of 0.
+It exposes a step and run method for callers. Each invocation of the step method increments
+or decrements the position by one with an equal probability and the run method executes
+this random choice for a series of 100, 1000, and 10000 steps.
+'''
 class RandomWalk1D(object):
     def __init__(self):
         self.position = 0
@@ -19,6 +29,12 @@ class RandomWalk1D(object):
             for i in range(steps):
                 self.step()
 
+'''
+This new class models an experiment that runs multiple trials of a 1D random walk.
+It collects data from each trial and computes statistical measures such as mean, 
+standard deviation, variance, and maximum distance from the origin. It also includes 
+a method to plot the results using matplotlib
+'''
     
 class Experiment(object):
     def __init__(self):
@@ -64,9 +80,8 @@ def main():
     a = Experiment()
     a.trial()
     print(f"After {a.trialcount} trials")
-    print(f"Mean position {a.mean}, Max distance (absolute) {a.max_distance}, standard deviation = {a.stddeviation}, variance = {a.variance}")
+    print(f"Mean Value {a.mean}, Max distance (absolute) {a.max_distance}, standard deviation = {a.stddeviation}, variance = {a.variance}")
     a.plot()
-
 
 if __name__ == '__main__':
     main()
