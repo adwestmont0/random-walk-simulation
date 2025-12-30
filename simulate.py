@@ -29,6 +29,10 @@ class RandomWalk1D(object):
             for i in range(steps):
                 self.step()
 
+    def runSteps(self, steps):
+        for i in range(steps):
+            self.step()
+
 '''
 This new class models an experiment that runs multiple trials of a 1D random walk.
 It collects data from each trial and computes statistical measures such as mean, 
@@ -37,16 +41,16 @@ a method to plot the results using matplotlib
 '''
     
 class Experiment(object):
-    def __init__(self):
+    def __init__(self, trialcount=None):
         self.mean = 0.0
         self.stddeviation = 0.0
         self.variance = 0.0
         self.max_distance = 0
-        self.trialcount = 0
+        self.trialcount = trialcount
         self.data = []
 
     def trial(self):
-        self.trialcount = random.randint(500, 1000)
+        self.trialcount = random.randint(500, 1000) if self.trialcount is None else self.trialcount
         total = 0
         for i in range(self.trialcount):
             walk1D = RandomWalk1D()
@@ -74,13 +78,12 @@ class Experiment(object):
         plt.axvline(self.mean, color='red', linestyle='--')
         plt.savefig("final_positions_histogram.png.png")
         plt.close()
-            
+       
 
 def main():
     a = Experiment()
     a.trial()
-    print(f"After {a.trialcount} trials")
-    print(f"Mean Value {a.mean}, Max distance (absolute) {a.max_distance}, standard deviation = {a.stddeviation}, variance = {a.variance}")
+    print(f"After {a.trialcount} trials, Mean Value {a.mean}, Max distance (absolute) {a.max_distance}, standard deviation = {a.stddeviation}, variance = {a.variance} ")
     a.plot()
 
 if __name__ == '__main__':
