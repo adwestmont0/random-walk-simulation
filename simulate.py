@@ -1,8 +1,7 @@
 
+''' We imported these libraries to access 
+its functions with the dot notation syntax 
 '''
-We imported these libraries to access its functions with the dot notation syntax 
-'''
-
 import matplotlib.pyplot as plt
 import random
 import statistics
